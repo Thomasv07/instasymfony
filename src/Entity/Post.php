@@ -39,9 +39,15 @@ class Post
      */
     private $likes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="id_post")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +115,36 @@ class Post
             // set the owning side to null (unless already changed)
             if ($like->getIdPost() === $this) {
                 $like->setIdPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setIdPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getIdPost() === $this) {
+                $comment->setIdPost(null);
             }
         }
 
