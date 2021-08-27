@@ -44,6 +44,11 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=users::class, inversedBy="posts")
+     */
+    private $id_users;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -147,6 +152,18 @@ class Post
                 $comment->setIdPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIdUsers(): ?users
+    {
+        return $this->id_users;
+    }
+
+    public function setIdUsers(?users $id_users): self
+    {
+        $this->id_users = $id_users;
 
         return $this;
     }
