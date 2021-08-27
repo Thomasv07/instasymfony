@@ -27,6 +27,12 @@ class Tags
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TagsPost::class, inversedBy="id_tags")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tagsPost;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Tags
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getTagsPost(): ?TagsPost
+    {
+        return $this->tagsPost;
+    }
+
+    public function setTagsPost(?TagsPost $tagsPost): self
+    {
+        $this->tagsPost = $tagsPost;
 
         return $this;
     }

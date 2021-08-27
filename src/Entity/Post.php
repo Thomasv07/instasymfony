@@ -54,6 +54,11 @@ class Post
      */
     private $saves;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TagsPost::class, inversedBy="id_post")
+     */
+    private $tagsPost;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -200,6 +205,18 @@ class Post
                 $save->setIdPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTagsPost(): ?TagsPost
+    {
+        return $this->tagsPost;
+    }
+
+    public function setTagsPost(?TagsPost $tagsPost): self
+    {
+        $this->tagsPost = $tagsPost;
 
         return $this;
     }
