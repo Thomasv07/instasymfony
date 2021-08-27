@@ -49,10 +49,16 @@ class Post
      */
     private $id_users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Save::class, mappedBy="id_post")
+     */
+    private $saves;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->saves = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +170,36 @@ class Post
     public function setIdUsers(?users $id_users): self
     {
         $this->id_users = $id_users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Save[]
+     */
+    public function getSaves(): Collection
+    {
+        return $this->saves;
+    }
+
+    public function addSave(Save $save): self
+    {
+        if (!$this->saves->contains($save)) {
+            $this->saves[] = $save;
+            $save->setIdPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSave(Save $save): self
+    {
+        if ($this->saves->removeElement($save)) {
+            // set the owning side to null (unless already changed)
+            if ($save->getIdPost() === $this) {
+                $save->setIdPost(null);
+            }
+        }
 
         return $this;
     }

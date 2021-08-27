@@ -74,11 +74,17 @@ class Users
      */
     private $posts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Save::class, mappedBy="id_users")
+     */
+    private $saves;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->posts = new ArrayCollection();
+        $this->saves = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -266,6 +272,36 @@ class Users
             // set the owning side to null (unless already changed)
             if ($post->getIdUsers() === $this) {
                 $post->setIdUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Save[]
+     */
+    public function getSaves(): Collection
+    {
+        return $this->saves;
+    }
+
+    public function addSave(Save $save): self
+    {
+        if (!$this->saves->contains($save)) {
+            $this->saves[] = $save;
+            $save->setIdUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSave(Save $save): self
+    {
+        if ($this->saves->removeElement($save)) {
+            // set the owning side to null (unless already changed)
+            if ($save->getIdUsers() === $this) {
+                $save->setIdUsers(null);
             }
         }
 
