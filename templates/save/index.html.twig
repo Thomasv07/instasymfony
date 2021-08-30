@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Save index{% endblock %}
+
+{% block body %}
+    <h1>Save index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for save in saves %}
+            <tr>
+                <td>{{ save.id }}</td>
+                <td>
+                    <a href="{{ path('save_show', {'id': save.id}) }}">show</a>
+                    <a href="{{ path('save_edit', {'id': save.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('save_new') }}">Create new</a>
+{% endblock %}

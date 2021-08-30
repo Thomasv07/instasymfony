@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TagsPost index{% endblock %}
+
+{% block body %}
+    <h1>TagsPost index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tags_post in tags_posts %}
+            <tr>
+                <td>{{ tags_post.id }}</td>
+                <td>
+                    <a href="{{ path('tags_post_show', {'id': tags_post.id}) }}">show</a>
+                    <a href="{{ path('tags_post_edit', {'id': tags_post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tags_post_new') }}">Create new</a>
+{% endblock %}
