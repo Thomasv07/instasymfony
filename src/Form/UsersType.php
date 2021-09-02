@@ -18,19 +18,27 @@ class UsersType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => false,
-                'attr' => ['placeholder' => 'Numéro de mobile']
+                'attr' => ['placeholder' => 'Numéro de mobile',
+                'class' => 'inputform'
+                ]
             ])
             ->add('name', TextType::class,[
                 'label' => false,
-                'attr' => ['placeholder' => 'Nom complet']
+                'attr' => ['placeholder' => 'Nom complet',
+                'class' => 'inputform'
+                ]
             ])
             ->add('username', TextType::class,[
                 'label' => false,
-                'attr' => ['placeholder' => "Nom d'utilisateur"]
+                'attr' => ['placeholder' => "Nom d'utilisateur",
+                'class' => 'inputform'
+                ]
             ])
             ->add('password', PasswordType::class, [
                 'label' => false,
-                'attr' => ['placeholder' => 'Votre mot de passe']
+                'attr' => ['placeholder' => 'Votre mot de passe',
+                'class' => 'inputform'
+                ]
             ]);
             
     }

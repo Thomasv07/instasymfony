@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion . Instagram{% endblock %}
+
+
+{% block body %}
+
+    <div class="principale">
+        <div class="block">
+            <div class="logo"></div>
+            <h2>Inscrivez-vous pour voir les<br> photos et vidéos de vos amis.</h2>
+            
+            <a class="fb" href=""><img src="{{ asset('assets/facebookconnect.png') }}" alt="">Se connecter à facebook</a>
+            <p>Ou</p>
+        </div>
+        <div class="input">
+        {{ include('users/_form.html.twig') }}
+        </div>
+        <div class="souscrivez">
+            <p>En vous inscrivant, vous acceptez nos Conditions générales. Découvrez comment nous recueillons, utilisons et partageons vos données en lisant notre Politique d’utilisation des données et comment nous utilisons les cookies et autres technologies similaires en consultant notre Politique d’utilisation des cookies.</p>
+        </div>
+    </div>
+    <section class="user">
+
+    </article>
+    <div class="loginblock">
+        <div class="login">
+            <p>Vous avez un compte ? <a href="/">Connectez-vous</a></p>
+        </div>
+    </div>
+    
+    <div class="link">
+        <p>Téléchargez l’application.</p>
+        <div class="download">
+            <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&ct=igweb.loginPage.badge&mt=8&vt=lo"><img class="gif" src="{{ asset('assets/appstore.png') }}" alt="Disponible dans l’App Store"></a><a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DF00894BC-E853-40A1-B324-6E1DCB8C6E06%26utm_content%3Dlo%26utm_medium%3Dbadge"><img class="gif" src="{{ asset('assets/googleplay.png') }}" alt="Disponible dans Google Play"></a>
+            
+        </div>
+    </div> 
+    </section>
+
+    
+    
+{% endblock %}

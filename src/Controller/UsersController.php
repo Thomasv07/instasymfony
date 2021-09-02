@@ -26,7 +26,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="users_new", methods={"GET","POST"})
+     * @Route("/inscription", name="users_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -42,7 +42,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('users/new.html.twig', [
+        return $this->renderForm('inscription.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
